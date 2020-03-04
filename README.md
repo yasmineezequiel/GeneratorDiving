@@ -1,24 +1,30 @@
-# README
+# Customizing generator
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Some rails default files generated are not necessary and can mess around with other files you create in the future, in order to modify it:
 
-Things you may want to cover:
+/config/application.rb
 
-* Ruby version
 
-* System dependencies
+```
+require_relative 'boot'
 
-* Configuration
+require 'rails/all'
 
-* Database creation
+Bundler.require(*Rails.groups)
 
-* Database initialization
+module GeneratorDiving
+  class Application < Rails::Application
+    config.generators do |generate|
+    generate.helper false
+    generate.assets false
+    generate.view_specs false
+    generate.helper_specs false
+    generate.routing_specs false
+    generate.controller_specs false
+    end
+  end
+end
+```
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
